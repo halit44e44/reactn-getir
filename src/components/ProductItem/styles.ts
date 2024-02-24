@@ -3,11 +3,11 @@ const {height, width} = Dimensions.get("window")
 
 const styles = StyleSheet.create({
     container: {
-        width: width * 0.3,
+        width: width * 0.29,
         marginTop: 12,
         height: height * 0.25,
         marginLeft: 10,
-        marginBottom: 10
+        marginBottom: 6
     },
     image: {
         width: width * 0.28,

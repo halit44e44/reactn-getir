@@ -3,7 +3,7 @@ import {ScrollView} from "react-native";
 import CategoryFiltering from "../../components/CategoryFiltering";
 import {Category} from "../../models";
 import TypeFiltering from "../../components/TypeFiltering";
-import ProductItem from "../../components/ProductItem";
+import ProductsContainer from "../../components/ProductsContainer";
 
 const Index = (
     props: {
@@ -20,7 +20,7 @@ const Index = (
         <ScrollView>
             <CategoryFiltering category={category} />
             <TypeFiltering category={category} />
-            <ProductItem />
+            <ProductsContainer />
         </ScrollView>
     );
 };
