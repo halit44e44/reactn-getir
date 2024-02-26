@@ -27,7 +27,7 @@ const Index = ({category}: { category: Category }) => {
         <ScrollView style={styles.container} showsHorizontalScrollIndicator={false} bounces={true} horizontal={true}>
             {
                 categories.map((item: string, index) => (
-                    <TypeBox setCat={setSelectCategories} item={item} activeCategoryName={selectCategories}/>
+                    <TypeBox key={index} setCat={setSelectCategories} item={item} activeCategoryName={selectCategories}/>
                 ))
             }
         </ScrollView>
