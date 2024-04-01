@@ -1,6 +1,7 @@
 {
   "expo": {
     "name": "getiClone",
+    "schema": "getir",
     "slug": "getiClone",
     "version": "1.0.0",
     "orientation": "portrait",
