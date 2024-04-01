@@ -10,10 +10,10 @@ const Index = ({product}: { product: Product }) => {
                 <Image style={styles.image} source={{uri: product.image}}/>
             </View>
             <View style={styles.content}>
-                <Text style={styles.name}>{product.name}</Text>
-                <Text style={styles.miktar}>{product.miktar}</Text>
-                <Text style={styles.fiyatIndirimli}>₺{product.fiyatIndirimli}</Text>
-            </View>
+            <Text style={styles.name}>{product.name}</Text>
+            <Text style={styles.miktar}>{product.miktar}</Text>
+            <Text style={styles.fiyatIndirimli}>₺{product.fiyatIndirimli}</Text>
+        </View>
             <View style={styles.count}>
                 <TouchableOpacity style={styles.minus}>
                     <Text style={{fontSize: 20, fontWeight: "bold", color: "#5c37bd"}}>—</Text>
