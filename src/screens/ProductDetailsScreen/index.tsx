@@ -29,7 +29,7 @@ const Index = ({route}: Props) => {
                 <DetailProperty/>
             </ScrollView>
             <View style={{alignSelf: "stretch", backgroundColor: "white"}}>
-                <CardButton/>
+                <CardButton item={product}/>
             </View>
         </View>
     );
