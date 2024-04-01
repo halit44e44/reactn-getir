@@ -3,16 +3,18 @@ import {Dimensions, FlatList, ScrollView, Text, TouchableOpacity, View} from "re
 import productsGetir from "../../../assets/productsGetir";
 import CartItem from "../../components/CartItem";
 import ProductItem from "../../components/ProductItem";
+import {connect} from "react-redux";
+import {Product} from "../../models";
 
 const {width, height} = Dimensions.get('window')
 
-const Index = () => {
+const Index = ({cartItems}: {cartItems:{product:Product, quantity:number}[]}) => {
     return (
         <View style={{flex: 1}}>
             <ScrollView style={{flex: 1}}>
                 <FlatList
-                    data={productsGetir.slice(0,3)}
-                    renderItem={({item}) => <CartItem product={item}/>}
+                    data={cartItems}
+                    renderItem={({item}) => <CartItem product={item.product}/>}
                     showsVerticalScrollIndicator={false}
                 />
                 <Text style={{color: "#5D3EBD", fontSize: 17, padding: 16, fontWeight: "bold"}}>Önerilen Ürünler</Text>
@@ -41,4 +43,11 @@ const Index = () => {
     );
 };
 
-export default Index;
+const mapStateToProps = (state: any) => {
+    const {cartItems} = state
+    return {
+        cartItems: cartItems
+    }
+}
+
+export default connect(mapStateToProps, null)(Index);

@@ -1,18 +1,20 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import HomeScreen from "../screens/HomeScreen";
 import {Dimensions, Image, Text, TouchableOpacity, View} from "react-native";
 import CategoryFilterScreen from "../screens/CategoryFilterScreen";
 import ProductDetailsScreen from "../screens/ProductDetailsScreen";
 import {Ionicons, FontAwesome, AntDesign} from "@expo/vector-icons";
-
 import {getFocusedRouteNameFromRoute, useNavigation} from "@react-navigation/native";
 import CartScreen from "../screens/CartScreen";
+import {connect} from "react-redux";
+import {Product} from "../models";
 
 const Stack = createStackNavigator();
 const {height, width} = Dimensions.get("window")
 
-const MyStack = ({navigation, route}) => {
+
+const MyStack = ({navigation, route, cartItems}: {cartItems:{product:Product, quantity:number}[]}) => {
     // const navigation = useNavigation()
     const tabHiddenRoutes = ["ProductDetails", "CartScreen"]
 
@@ -24,6 +26,19 @@ const MyStack = ({navigation, route}) => {
             navigation.setOptions({tabBarStyle: {display: "flex", height: 80}})
         }
     }, [navigation, route])
+
+    const [totalPrice, setTotalPrice] = useState(0)
+    const getProductsPrice = () => {
+        let total: number = 0;
+        cartItems.forEach(cartItems => {
+            total = (cartItems.product.fiyat + total)
+        })
+        total = total.toFixed(2)
+        setTotalPrice(total)
+    }
+    useEffect(() => {
+        getProductsPrice()
+    }, [cartItems, navigation, route])
 
 
     return (
@@ -57,7 +72,7 @@ const MyStack = ({navigation, route}) => {
                     }}>
                         <Image style={{width: 23, height: 23, marginLeft: 6}} source={require("../../assets/cart.png")} />
                         <View style={{marginLeft: 4,flex:1, height: 33, backgroundColor: "#f3eff3", borderTopRightRadius: 9, borderBottomRightRadius: 9,alignItems: "center", justifyContent: "center"}}>
-                            <Text style={{color: "#5D3EBD", fontWeight: "bold", fontSize: 12, }}>₺23,00</Text>
+                            <Text style={{color: "#5D3EBD", fontWeight: "bold", fontSize: 12, }}>₺{totalPrice}</Text>
                         </View>
                     </TouchableOpacity>
                 )
@@ -100,6 +115,15 @@ const MyStack = ({navigation, route}) => {
     );
 };
 
-export default function HomeNavigator({navigation, route}) {
-    return <MyStack navigation={navigation} route={route}/>
+const mapStateToProps = (state: any) => {
+    const {cartItems} = state
+    return {
+        cartItems: cartItems
+    }
 }
+
+function HomeNavigator({navigation, route,cartItems}) {
+    return <MyStack navigation={navigation} route={route} cartItems={cartItems}/>
+}
+
+export default connect(mapStateToProps, null)(HomeNavigator)
