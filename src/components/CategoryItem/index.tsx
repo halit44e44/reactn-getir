@@ -10,7 +10,7 @@ type categoryItemProps = {
 const Index = ({item}:categoryItemProps) => {
     const navigation = useNavigation()
     return (
-        <TouchableOpacity style={styles.container} onPress={() => {
+        <TouchableOpacity testID="category-item" style={styles.container} onPress={() => {
             // @ts-ignore
             navigation.navigate("CategoryDetails", {category:item})
         }}>

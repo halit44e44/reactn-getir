@@ -37,6 +37,7 @@ const Index = () => {
             snapToInterval={width}
             snapToAlignment="center"
             decelerationRate="fast"
+            testID="banner-carousel"
         >
 
         </FlatList>

@@ -12,7 +12,7 @@ const Index = () => {
                     <Text style={{fontWeight: "600", fontSize: 16}}>Ev</Text>
                     <Text style={{fontWeight: "500", fontSize: 11.5, color: "gray", marginLeft: 6, marginRight: 3}}>Dedepaşa
                         Blv. Yenişehir Mahallesi.. </Text>
-                    <Entypo name="chevron-right" size={22} color="#5D3EBD"/>
+                    <Entypo testID="right-icon" name="chevron-right" size={22} color="#5D3EBD"/>
                 </View>
                 <View style={styles.headerTwo}>
                     <Text style={{fontSize: 10, fontWeight: "bold", color: "#5D3EBD"}}>TVS</Text>
